@@ -1,189 +1,142 @@
 /* =========================================
-    1. BASIC SETUP & COLORS
-    ========================================= */
+       1. BASIC SETUP & COLORS
+       ========================================= */
 body {
-    font-family: 'Nunito', sans-serif;
-    background-color: #1a1a2e;
-    color: #eaeaea;
-    margin: 0;
-    padding: 0;
+  font-family: "Nunito", sans-serif;
+  background-color: #1a1a2e;
+  color: #eaeaea;
+  margin: 0;
+  padding: 0;
 }
 
 /* =========================================
-    2. HEADER
-    ========================================= */
+       2. HEADER
+       ========================================= */
 header {
-    background-color: #E3350D;
-    border-bottom: 4px solid black;
-    padding: 15px 20px;
-    text-align: center;
+  background-color: #e3350d;
+  border-bottom: 4px solid black;
+  padding: 15px 20px;
+  text-align: center;
 }
 
 header h1 {
-    font-family: 'Press Start 2P', monospace;
-    color: #FFCB05;
-    text-shadow: 2px 2px 0 black;
-    margin: 0;
-    font-size: 20px;
+  font-family: "Press Start 2P", monospace;
+  color: #ffcb05;
+  text-shadow: 2px 2px 0 black;
+  margin: 0;
+  font-size: 20px;
 }
 
 /* =========================================
-    3. CONTROLS (Search, Filters, Buttons)
-    ========================================= */
+       3. CONTROLS (Search, Filters, Buttons)
+       ========================================= */
 .controls-container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: flex-end;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end;
 }
 
 .control-group {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .control-group label {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 8px;
-    color: #FFCB05;
-    margin-bottom: 5px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: #ffcb05;
+  margin-bottom: 5px;
 }
 
-input, select {
-    background-color: #16213e;
-    border: 2px solid #0f3460;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: bold;
-    font-size: 14px;
+input,
+select {
+  background-color: #16213e;
+  border: 2px solid #0f3460;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .gen-btn {
-    background-color: #16213e;
-    border: 2px solid #0f3460;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 8px;
+  background-color: #16213e;
+  border: 2px solid #0f3460;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
 }
 
 .gen-btn.active {
-    background-color: #FFCB05;
-    color: black;
-    border-color: #FFCB05;
+  background-color: #ffcb05;
+  color: black;
+  border-color: #ffcb05;
 }
 
 .info-bar {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    color: #FFCB05;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  color: #ffcb05;
 }
 
 /* =========================================
-    4. POKEMON GRID & CARDS
-    ========================================= */
+       4. POKEMON GRID & CARDS
+       ========================================= */
 .grid {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
 .card {
-    background-color: #16213e;
-    border: 2px solid #0f3460;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s;
+  background-color: #16213e;
+  border: 2px solid #0f3460;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    border-color: #FFCB05;
+  transform: translateY(-5px);
+  border-color: #ffcb05;
 }
 
 .card img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
 }
 
 .card-name {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    text-transform: capitalize;
-    margin: 10px 0;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  text-transform: capitalize;
+  margin: 10px 0;
 }
 
 .type-badge {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: black;
-    margin: 2px;
-}
-
-/* =========================================
-    5. MODAL (Popup)
-    ========================================= */
-.modal-background {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #16213e;
-    border: 3px solid #FFCB05;
-    border-radius: 15px;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.modal-content img {
-    width: 150px;
-    height: 150px;
-}
-
-.modal-name {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 14px;
-    color: #FFCB05;
-    text-transform: capitalize;
-    margin-bottom: 15px;
-}
-
-.close-btn {
-    margin-top: 20px;
-    background-color: #E3350D;
-    color: white;
-    border: 2px solid black;
-    padding: 10px 20px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 8px;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  margin: 2px;
 }
