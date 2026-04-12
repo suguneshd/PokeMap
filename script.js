@@ -1,4 +1,3 @@
-// --- Global Variables ---
 let allPokemon = [];
 
 const grid = document.getElementById("pokemonGrid");
@@ -6,7 +5,6 @@ const infoText = document.getElementById("infoText");
 const searchInput = document.getElementById("searchInput");
 const typeFilter = document.getElementById("typeFilter");
 
-// --- Fetch Data ---
 async function loadGeneration(offset, limit, clickedButton) {
   if (clickedButton) {
     document.querySelector(".active").classList.remove("active");
@@ -17,19 +15,18 @@ async function loadGeneration(offset, limit, clickedButton) {
   infoText.innerText = "Downloading Pokemon... Please wait.";
 
   try {
-    let response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`,
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
     );
-    let data = await response.json();
+    const data = await response.json();
 
-    // Fetch detailed data for each Pokemon
-    let downloadTasks = [];
-    for (let item of data.results) {
-      let task = fetch(item.url).then((res) => res.json());
-      downloadTasks.push(task);
-    }
+    const downloadTasks = data.results.map(item =>
+      fetch(item.url).then(res => res.json())
+    );
 
     allPokemon = await Promise.all(downloadTasks);
+
+    allPokemon.sort((a, b) => a.name.localeCompare(b.name));
 
     displayPokemon(allPokemon);
     infoText.innerText = `Showing ${allPokemon.length} Pokemon`;
@@ -38,53 +35,40 @@ async function loadGeneration(offset, limit, clickedButton) {
   }
 }
 
-// --- Display Cards ---
 function displayPokemon(pokemonList) {
   grid.innerHTML = "";
 
-  for (let pokemon of pokemonList) {
-    let card = document.createElement("div");
+  pokemonList.forEach(pokemon => {
+    const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
-          <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
-          <div class="card-name">${pokemon.name}</div>
-        `;
+      <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
+      <div class="card-name">${pokemon.name}</div>
+    `;
 
     grid.appendChild(card);
-  }
+  });
 }
 
-// --- Filtering (Search & Type) ---
 function applyFilters() {
-  let searchText = searchInput.value.toLowerCase();
-  let selectedType = typeFilter.value;
-  let filteredList = [];
+  const searchText = searchInput.value.toLowerCase();
+  const selectedType = typeFilter.value;
 
-  for (let pokemon of allPokemon) {
-    let nameMatches = pokemon.name.includes(searchText);
-    let typeMatches = false;
+  const filteredList = allPokemon.filter(pokemon => {
+    const nameMatches = pokemon.name.includes(searchText);
 
-    if (selectedType === "") {
-      typeMatches = true;
-    } else {
-      for (let slot of pokemon.types) {
-        if (slot.type.name === selectedType) {
-          typeMatches = true;
-        }
-      }
-    }
+    const typeMatches =
+      selectedType === "" ||
+      pokemon.types.some(slot => slot.type.name === selectedType);
 
-    if (nameMatches && typeMatches) {
-      filteredList.push(pokemon);
-    }
-  }
+    return nameMatches && typeMatches;
+  });
 
   displayPokemon(filteredList);
   infoText.innerText = `Showing ${filteredList.length} Pokemon`;
 }
 
-// --- Events & Init ---
 searchInput.addEventListener("input", applyFilters);
 typeFilter.addEventListener("change", applyFilters);
 
